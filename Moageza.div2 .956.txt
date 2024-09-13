@@ -1,0 +1,267 @@
+  #include <bits/stdc++.h>
+  #define ll long long
+  #define ld long double
+  #define nl "\n"
+  #define ull unsigned long long
+  #define rv return void
+  #define str string
+  #define all(x) x.begin(), x.end()
+  #define allr(x) x.rbegin(), x.rend()
+  #define vec vector
+  #define fixed(n) fixed << setprecision(n)
+  using namespace std;
+  void Moageza()
+  {
+      //   #ifndef ONLINE_JUDGE
+      //       freopen("input.txt", "r", stdin),freopen("output.txt","w",stdout);
+      //   #endif
+      ios_base::sync_with_stdio(0), cin.tie(nullptr), cout.tie(nullptr);
+  }
+  void solve(){
+    ll a,c=0,d=0,k=0;cin >> a;
+    vec<ll>x(a),y(a),z(a),q,w,e;
+    for(int i = 0; i <a;i++){cin >> x[i];c+=x[i];}
+    for(int i = 0; i <a;i++)cin >> y[i];
+    for(int i = 0; i <a;i++)cin >> z[i];
+    c+=2;
+  c/=3;
+  // cout<<c<<" ";
+  /////////////////////////
+  // x->y->z
+  for(int i = k; i <a;i++){
+    d+=x[i];
+    if(d>=c){
+      q.push_back(k);
+       q.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i =k; i <a;i++){
+    d+=y[i];
+    if(d>=c){
+      w.push_back(k);
+       w.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i = k; i <a;i++){
+    d+=z[i];
+    if(d>=c){
+      e.push_back(k);
+       e.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+     if(w.size()==2&&q.size()==2&&e.size()==2){
+     cout<<q[0]+1<<" "<<q[1]+1<<" "<<w[0]+1<<" "<<w[1]+1<<" "<<e[0]+1<<" "<<e[1]+1<<" ";
+      return;
+     }
+     w.clear(),q.clear(),e.clear();
+    /////////////////////////
+  // x->z->y
+  d=0;
+    k=0;
+     for(int i = k; i <a;i++){
+    d+=x[i];
+    if(d>=c){
+      q.push_back(k);
+       q.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i = k; i <a;i++){
+    d+=z[i];
+    if(d>=c){
+      e.push_back(k);
+       e.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i =k; i <a;i++){
+    d+=y[i];
+    if(d>=c){
+      w.push_back(k);
+       w.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+     if(w.size()==2&&q.size()==2&&e.size()==2){
+      cout<<q[0]+1<<" "<<q[1]+1<<" "<<w[0]+1<<" "<<w[1]+1<<" "<<e[0]+1<<" "<<e[1]+1<<" ";
+      return;
+     }
+      w.clear(),q.clear(),e.clear();
+    /////////////////////////
+  // y->x->z
+    k=0;
+    d=0;
+  for(int i = k; i <a;i++){
+    d+=y[i];
+    if(d>=c){
+      w.push_back(k);
+       w.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i = k; i <a;i++){
+    d+=x[i];
+    if(d>=c){
+      q.push_back(k);
+       q.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i =k; i <a;i++){
+    d+=z[i];
+    if(d>=c){
+      e.push_back(k);
+       e.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+     if(w.size()==2&&q.size()==2&&e.size()==2){
+     cout<<q[0]+1<<" "<<q[1]+1<<" "<<w[0]+1<<" "<<w[1]+1<<" "<<e[0]+1<<" "<<e[1]+1<<" ";
+      return;
+     }
+      w.clear(),q.clear(),e.clear();
+    /////////////////////////
+  // y->z->x
+    k=0;
+    d=0;
+  for(int i = k; i <a;i++){
+    d+=y[i];
+    if(d>=c){
+      w.push_back(k);
+       w.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i = k; i <a;i++){
+    d+=z[i];
+    if(d>=c){
+      e.push_back(k);
+       e.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i =k; i <a;i++){
+    d+=x[i];
+    if(d>=c){
+      q.push_back(k);
+       q.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+     if(w.size()==2&&q.size()==2&&e.size()==2){
+     cout<<q[0]+1<<" "<<q[1]+1<<" "<<w[0]+1<<" "<<w[1]+1<<" "<<e[0]+1<<" "<<e[1]+1<<" ";
+      return;
+     }
+      w.clear(),q.clear(),e.clear();
+    /////////////////////////
+  // z->x->y
+    k=0;
+    d=0;
+  for(int i = k; i <a;i++){
+    d+=z[i];
+    if(d>=c){
+      e.push_back(k);
+       e.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i = k; i <a;i++){
+    d+=x[i];
+    if(d>=c){
+      q.push_back(k);
+       q.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i =k; i <a;i++){
+    d+=y[i];
+    if(d>=c){
+      w.push_back(k);
+       w.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+     if(w.size()==2&&q.size()==2&&e.size()==2){
+      cout<<q[0]+1<<" "<<q[1]+1<<" "<<w[0]+1<<" "<<w[1]+1<<" "<<e[0]+1<<" "<<e[1]+1<<" ";
+      return;
+     }
+      w.clear(),q.clear(),e.clear();
+    /////////////////////////
+  // z->y->x
+    k=0;
+    d=0;
+  for(int i = k; i <a;i++){
+    d+=z[i];
+    if(d>=c){
+      e.push_back(k);
+       e.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i = k; i <a;i++){
+    d+=y[i];
+    if(d>=c){
+      w.push_back(k);
+       w.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+  d=0;
+  for(int i =k; i <a;i++){
+    d+=x[i];
+    if(d>=c){
+      q.push_back(k);
+       q.push_back(i);
+      d=0,k=i+1;
+      break;
+    }
+  }
+     if(w.size()==2&&q.size()==2&&e.size()==2){
+      cout<<q[0]+1<<" "<<q[1]+1<<" "<<w[0]+1<<" "<<w[1]+1<<" "<<e[0]+1<<" "<<e[1]+1<<" ";
+      return;
+     }
+     cout<<-1;
+  }
+  int main()
+  {
+      Moageza();
+      int t;cin >> t;
+      while (t--)
+      {
+          solve();
+             cout << nl;
+      }
+        //  solve();
+      return 0;
+  }

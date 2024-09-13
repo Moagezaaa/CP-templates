@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define ld long double
+#define nl "\n"
+#define ull unsigned long long
+#define rv return void
+#define str string
+#define all(x) x.begin(), x.end()
+#define allr(x) x.rbegin(), x.rend()
+#define vec vector
+#define fixed(n) fixed << setprecision(n)
+using namespace std;
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+class SqrtDecompositionGCD {
+private:
+    vector<int> arr;       
+    vector<int> blockGCD;  
+    int blockSize;        
+
+public:
+    SqrtDecompositionGCD(const vector<int>& input) {
+        arr = input;
+        int n = arr.size();
+        blockSize = static_cast<int>(sqrt(n)) + 1; 
+        blockGCD.resize(blockSize, 0);
+        for (int i = 0; i < n; ++i) {
+            if (blockGCD[i / blockSize] == 0) {
+                blockGCD[i / blockSize] = arr[i];
+            } else {
+                blockGCD[i / blockSize] = gcd(blockGCD[i / blockSize], arr[i]);
+            }
+        }
+    }
+    void update(int idx, int value) {
+        int blockIdx = idx / blockSize;
+        arr[idx] = value;
+        blockGCD[blockIdx] = 0;
+        for (int i = blockIdx * blockSize; i < min(static_cast<int>(arr.size()), (blockIdx + 1) * blockSize); ++i) {
+            if (blockGCD[blockIdx] == 0) {
+                blockGCD[blockIdx] = arr[i];
+            } else {
+                blockGCD[blockIdx] = gcd(blockGCD[blockIdx], arr[i]);
+            }
+        }
+    }
+    int query(int left, int right) {
+        int result = 0;
+        int leftBlock = left / blockSize;
+        int rightBlock = right / blockSize;
+
+        if (leftBlock == rightBlock) {
+            for (int i = left; i <= right; ++i) {
+                result = gcd(result, arr[i]);
+            }
+        } else {
+            for (int i = left; i < (leftBlock + 1) * blockSize; ++i) {
+                result = gcd(result, arr[i]);
+            }
+            for (int i = rightBlock * blockSize; i <= right; ++i) {
+                result = gcd(result, arr[i]);
+            }
+            for (int i = leftBlock + 1; i < rightBlock; ++i) {
+                result = gcd(result, blockGCD[i]);
+            }
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    int a,d=0;cin >> a;
+    vector<int> data(a);
+    for(int i = 0; i<a; ++i)cin >> data[i];
+    SqrtDecompositionGCD sqrtDecomp(data);
+    for(int i=0;i<a;i++){
+        int q=data[i];
+    sqrtDecomp.update(i, 0);
+   d=max(sqrtDecomp.query(0, a-1) ,d);
+   sqrtDecomp.update(i, q);
+    }
+    cout<<d;
+    return 0;
+}

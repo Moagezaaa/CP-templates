@@ -1,0 +1,8 @@
+vec<ll>m(1e6+5,0);
+void e(){
+    for(ll i=1;i<1e6+5;i++){
+        for(ll j=i;j<1e6+5;j+=i){
+            m[j]++;
+        }
+    }
+}
