@@ -49,9 +49,6 @@ s.insert(x);// use to find the distinct numbers
 signed main()
 {
    Moageza
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
-    #endif
     int t = 1;
     //  cin >> t;
     while (t--) {
